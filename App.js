@@ -1,33 +1,43 @@
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, Image} from 'react-native';
-import { createStackNavigator } from 'react-navigation';
-import { StackNavigator } from 'react-navigation';
+import React from 'react';
+import {TabNavigator} from 'react-navigation';
 
+import {Home} from './Component/Screen/Home';
+import {Hero} from './Component/Screen/Hero';
+import {Setting} from './Component/Screen/Setting';
 
-import Judul from './Component/Judul';
-import Login from './Component/Login';
+const Tab = TabNavigator({
+  Home: {
+    Screen: Home,
+  },
+  Hero: {
+    Screen: Hero,
+  },
+  Setting: {
+    Screen: Setting,
+  }
+},{
+  tabBarPosition: 'bottom',
+  swipeEnabled: true,
+  tabBarOptions:{
+    activeTintColor: '#f8f8f8',
+    activeBackgroundColor: '#586589',
+    inactiveTintColor: '#1234',
+    style:{
+      backgroundColor:'#123456',
+    },
 
-const AppNavigator = createStackNavigator ({
-       Login : Login,
-       Judul : Judul,
-})
+    labelStyle: {
+      fontSize: 10,
+      color: 'white',
+      padding: 5,
+    }
+  }
+});
 
-
-export default class App extends Component {
+export default class App extends React.Component {
   render() {
     return (
-
-      <AppNavigator/>
-
+      <Tab/>
     );
   }
-} 
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,   
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#ffff',
-  },  
- });
+}
